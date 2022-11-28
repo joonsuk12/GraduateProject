@@ -1,0 +1,173 @@
+:root{
+    /* color */
+    --color-black: #000;
+    --color-white: white;
+    --color-navy: #141141;
+    --color-purple:#453B72;
+    --color-light-grey: #ABA9BB;
+    --color-grey: #474555;
+    --color-deep-grey: #454360;
+
+    /* font size */
+    --font-large: 48px;
+    --font-medium: 28px;
+    --font-regular: 18px;
+    --font-small: 16px;
+    --font-micro: 14px;
+
+    /* Font weight */
+    --weight-bold: 700;
+    --weight-semi-bold: 600;
+    --weight-regular: 400;
+}
+
+
+body{
+    margin: 0;
+    font-family: Source Sans Pro;
+}
+
+a{
+    text-decoration: none;
+    color: var(--color-white);
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-deep-grey);
+    padding: 12px 16px;
+}
+
+.navbar__logo{
+    font-size: 24px;
+    color: var(--color-light-grey);
+}
+
+.navbar__menu{
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.navbar__menu li{
+    padding: 8px 12px;
+}
+
+.navbar__menu li:hover {
+    background-color: var(--color-purple);
+    border-radius: 4px;
+}
+
+.navbar__icons{
+    display: flex;
+    list-style: none;
+    color: var(--color-white);
+}
+
+.navbar__icons li{
+    padding: 8px 12px;
+}
+
+/* body */
+body{
+    background-color: var(--color-grey);
+}
+    
+    
+
+.requirement{
+    z-index: 1;
+    background-color: var(--color-grey);
+}
+/* .requirement::before{
+    position: absolute;
+    z-index: 2;
+    background-color: rgba(0,0,0,0.6);
+} */
+
+.requirement__container{
+    background-image: url("/static/gym.jpg");
+    background-size: cover;
+    background-repeat: round;
+    height: 360px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 2;
+}
+
+.inner{
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-grey);
+    opacity: 0.8;
+    z-index: 3;
+}
+
+.inner__contents-container{
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-left: 40px;
+}
+
+.title{
+    font-size: var(--font-medium);
+    font-weight: bold;
+    color: var(--color-white);
+    margin-bottom: 12px;
+}
+
+.message{
+    font-size: var(--font-regular);
+    font-weight: normal;
+    color: var(--color-white);
+    line-height: 2rem;
+}
+
+/* h1#title{
+    text-align: center;
+    color: var(--color-black);
+} */
+
+
+#main-space{
+    background-color: var(--color-grey);
+}
+
+#main-space h1{
+    text-align: center;
+    color: var(--color-light-grey)
+}
+
+#videoFileForm{
+    margin-left: auto;
+    margin-right: auto;
+    width: 320px;
+    text-align: center;
+    background-color: var(--color-light-grey);
+}
+
+#view-area{
+    position: relative;
+    border: 0;
+    display: inline;
+}
+
+/* postResult.html  video player */
+.player{
+    position: sticky;
+    top: 0;
+    text-align: center;
+    background-color: var(--color-black);
+}
+.player video{
+    margin-top: 24px;
+    width: 100%;
+    height: 100%;
+    max-width: 1000px;
+    max-height: 480px;
+
+}
+

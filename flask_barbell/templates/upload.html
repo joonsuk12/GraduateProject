@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LetMeSee</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <script src="https://kit.fontawesome.com/a31b068d84.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+</head>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script type = "text/javascript">
+    function previewImage(targetObj, viewArea){
+        let preview = document.getElementById(viewArea);
+        let uA = window.navigator.userAgent;
+
+        let files = targetObj.files;
+        for(let i=0;i<files.length;i++){
+            let file = files[i];
+            let videoType = /video.*/;
+            if(!file.type.match(videoType))
+                continue;
+
+            let prevVideo = document.getElementById("prev-"+viewArea);
+            if(prevVideo)
+                preview.removeChild(prevVideo);
+            let video = document.createElement("video");
+            video.id = "prev-"+ viewArea;
+            video.classList.add("obj");
+            video.file = file;
+            video.style.width = "850px"
+            video.style.height = "480px"
+            preview.appendChild(video);
+
+            if(window.FileReader){
+                let reader = new FileReader();
+                reader.onloadend = (function(aVideo){
+                    return function(e){
+                            aVideo.src = e.target.result;
+                    };
+                })(img);
+                reader.readAsDataURL(file);
+            }else{
+                if(!document.getElementById("sfr-"+ viewArea)){
+                    let info = document.createElement("p");
+                    info.id = "sfr-"+viewArea;
+                    info.innerText = "Not Supported FileReader";
+                    preview.insertBefore(info.null);
+                }
+            }
+        }
+    }   
+</script>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar__logo">
+                <i class="fas fa-dumbbell"></i>
+                <a href="">Let Me See</a>
+            </div>
+            <ul class="navbar__menu">
+                <li><a href="">Home</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Service</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+            <ul class="navbar__icons">
+                <li><i class="fab fa-github"></i></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="body">
+        <section class="requirement">
+            <div class="requirement__container">
+                <div class="inner">
+                    <div class="inner__contents-container">
+                        <div class="title">Bar Path Tracking & Posture Analysis Program</div>
+                        <div class="message">
+                            유의사항<br/>
+                            업로드 할 영상의 첫 프레임에는<br/>
+                            사용자와 객체가 존재해야 합니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <div id ="main-space">
+            <h1 id="title">Video Upload</h1>
+            <form id = "videoFileForm" action = "/postVideo" method = "POST" enctype = "multipart/form-data">
+               <input type = "file" name = "videoFile" id="videoFile" value="videoFile" onchange="previewImage(this,'view-area')"/>
+               <input type = "submit"/ value="업로드" />
+               <br><br>
+               <div align="center" id="view-area"></div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
